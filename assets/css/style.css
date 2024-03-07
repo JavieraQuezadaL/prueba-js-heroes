@@ -1,0 +1,13 @@
+main {
+    text-align: center;
+}
+
+h1 {
+    color: brown;
+    text-decoration: underline;
+}
+
+.btn {
+    background-color: brown;
+    color: white;
+}
