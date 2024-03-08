@@ -33,7 +33,7 @@
                 SuperHeroeEncontrado!
             </div>
             <div class="invalid-feedback mb-2">
-                Ingrese solo números
+                Ingrese números mayor a 0
             </div>
             <button class="btn" type="submit">Buscar</button>
         </form>
@@ -42,22 +42,13 @@
 
             <article class="col-12 col-md-6" id="heroResult">
 
-
-                <!-- <div class="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-                        alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h5>name:</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">base_experience:</li>
-                        <li class="list-group-item">height:</li>
-                        <li class="list-group-item">weight:</li>
-                        <li class="list-group-item">types:</li>
-                    </ul>
-                    <div> -->
-
             </article>
+
+            <article class="col-12 col-md-6">
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            </article>
+
+
 
         </section>
 
@@ -67,6 +58,8 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>"https://cdn.canvasjs.com/jquery.canvasjs.min.js"</script>
+
+    <script type="text/javascript" src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
 
     <script src="./assets/js/app.js"></script>
 </body>

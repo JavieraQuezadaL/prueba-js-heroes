@@ -2,6 +2,7 @@ $(document).ready(function () {
     const heroForm = $("#heroForm")
     const heroNumber = $("#heroNumber")
     const heroResult = $("#heroResult")
+    const chartContainer = $("#chartContainer")
 
     heroForm.on("submit", function (event) {
         event.preventDefault()
@@ -12,7 +13,7 @@ $(document).ready(function () {
 
         if (heroNumberUser > 0) {
             heroNumber.addClass("is-valid")
-            //console.log("es correcto")
+
             getHero(heroNumberUser)
         } else {
             heroNumber.addClass("is-invalid")
@@ -20,8 +21,9 @@ $(document).ready(function () {
 
 
     })
-    //CONSUMIR LA API DE SUPERHERO
-    //URL https://www.superheroapi.com/api.php/4905856019427443/100
+
+
+
     const getHero = (heroNumber) => {
         $.ajax({
             url: `https:www.superheroapi.com/api.php/10231403815334635/${heroNumber}`,
@@ -30,20 +32,16 @@ $(document).ready(function () {
 
 
 
-                // console.log(hero)
-                // console.log("name: ", hero.name)
-                // console.log("height: ", hero.heigth)
-                // console.log("image: ", hero.image)
+
                 const myHero = {
                     image: hero.image.url,
                     name: hero.name,
-                    connections: hero.connections.relative,
+                    connections: hero.connections["group-affiliation"],
                     occupation: hero.work.occupation,
-                    firstappearance: hero.biography.firstappearance,
+                    firstappearance: hero.biography["first-appearance"],
                     height: hero.appearance.height,
                     weight: hero.appearance.weight,
                     alignment: hero.biography.alignment,
-
 
 
 
@@ -62,18 +60,45 @@ $(document).ready(function () {
                     <li class="list-group-item">Altura: ${myHero.height}</li>
                     <li class="list-group-item">Peso: ${myHero.weight}</li>
                     <li class="list-group-item">Alianzas: ${myHero.alignment}</li>
+                    
 
 
                 </ul>
                 <div>`)
 
 
+                const arrayPowers = Object.entries(hero.powerstats);
+                const powers = arrayPowers.map(power => ({ ...power }))
+
+                const dataPoints = powers.map(object => {
+                    const newObject = {
+                        y: object[1],
+                        label: object[0]
+                    };
+                    return newObject;
+                });
+
+                const options = {
+                    title: { text: "Estadisticas del Super Heroe" },
+                    animationEnabled: true,
+                    data: [
+                        {
+                            type: "pie",
+                            startAngle: 40,
+                            toolTipContent: "<b>{label}</b>: {y}%",
+                            showInLegend: "true",
+                            legendText: "{label} - {y}%",
+                            dataPoints: dataPoints
+                        }
+                    ]
+
+                }
+
+                chartContainer.CanvasJSChart(options);
+
+
             },
-
-
-
             error(e) {
-
 
             }
         })
